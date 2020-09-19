@@ -1,6 +1,6 @@
 import java.util.*;
   
-  public class anyBasetoAnybase{
+  public class decimaltoAnybase{
   
   public static void main(String[] args) {
       Scanner scn = new Scanner(System.in);
