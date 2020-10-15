@@ -2,6 +2,32 @@ import java.util.*;
 
 public class recursion1
 {
+	public static String BetaPattern(int number, int step) {
+
+		String result = "";
+		if(number<0){
+			result += " ";
+		}
+		if (number > 0) {
+			step = step * -1;
+			return "-1";
+		}
+
+		if (number == 0) {
+			result += Integer.toString(number);
+			step = step * -1;
+			return result;
+		}
+
+		result += Integer.toString(number);
+		String ans = BetaPattern(number + step, step);
+		if (ans!="-1") {
+			result += ans;
+			result += Integer.toString(number);
+
+		}
+		return result + " ";
+	}
 	public static void rec(int n)
 	{
 		if(n==0)
@@ -15,17 +41,6 @@ public class recursion1
 			rec(n-1);//Decreasing
 			System.out.println(n);
 		}
-	}
-	public static void incdecrec(int n)
-	{
-		if(n==1)
-		{
-			System.out.println(n);
-			return;
-		}
-		System.out.println(n);
-		incdecrec(n-1);
-		System.out.println(n);
 	}
 	public static int fact(int n)
 	{
@@ -79,6 +94,6 @@ public class recursion1
 	}
 	public static void main(String args[])
 	{
-		incdecrec(-4);
+		System.out.println(BetaPattern(-12,3));
 	}
 }
