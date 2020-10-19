@@ -1,32 +1,76 @@
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
-public class Ballot{
-    private ArrayList<Party> parties = new ArrayList<>();
-    private int counter = 0;
+public class Ballot {
+	private static ArrayList<Party> parties = new ArrayList<>();
+	private static int counter = 0;
+	private Candidate[] votes;
+	private int ID;
 
-    private int[] votes;
-    private int ID;
+	public Ballot() {
+		this.votes = new Candidate[3];
+		this.ID = counter;
+		counter++;
+	}
 
-    Candidate useClass = new Candidate();
+	public static void addParty(Party p) {
+		if (!parties.contains(p)) {
+			parties.add(p);
+		}
+	}
 
-    public Ballot(){
-        this.votes = new int[useClass.OFFICE.length];
-        this.ID = counter;
-        counter++;
-    }
+	public static ArrayList<Candidate> getCandidates(String office) {
+		ArrayList<Candidate> candidates = new ArrayList<>();
 
-    public static void addParty(Party p){
-        boolean contain = parties.contains(p);
-        if(!contain){
-            parties.add(p);
-        }
-    }
-    public static ArrayList<Candidate> getCandidates(String office){
-        ArrayList<Candidate> candidates = new ArrayList<>();
+		for (int i = 0; i < parties.size(); i++) {
+			try {
+				candidates.add(parties.get(i).getCandidate(office));
+			} catch (NoSuchElementException e) {
+				continue;
+			}
+		}
+		return candidates;
+	}
 
-    }
+	public Candidate getVote(String office) {
+		Candidate candidate = null;
+		for (int i = 0; i < votes.length; i++) {
+			if (votes[i].getOffice().equals(office)) {
+				candidate = votes[i];
+			}
+		}
+		return candidate;
 
-    public static void main(String args[]){
+	}
 
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+
+		if (!(o instanceof Ballot)) {
+			return false;
+		}
+
+		Ballot b = (Ballot) o;
+
+		return Integer.compare(ID, b.ID) == 0;
+
+	}
+
+	public void vote(Candidate c) {
+		String office = c.getOffice();
+		int pos = 0;
+		switch (office) {
+		case "President":
+			pos = 0;
+			break;
+		case "Vice President":
+			pos = 1;
+		case "Secretary":
+			pos = 2;
+		}
+		votes[pos] = c;
+	}
 }
