@@ -35,6 +35,9 @@ public class Ballot {
 	public Candidate getVote(String office) {
 		Candidate candidate = null;
 		for (int i = 0; i < votes.length; i++) {
+			if (votes[i] == null) {
+				continue;
+			}
 			if (votes[i].getOffice().equals(office)) {
 				candidate = votes[i];
 			}
@@ -59,18 +62,15 @@ public class Ballot {
 
 	}
 
-	public void vote(Candidate c) {
+    public void vote(Candidate c) {
 		String office = c.getOffice();
-		int pos = 0;
-		switch (office) {
-		case "President":
-			pos = 0;
-			break;
-		case "Vice President":
-			pos = 1;
-		case "Secretary":
-			pos = 2;
-		}
-		votes[pos] = c;
+        if(office.equals("President")){
+            votes[0]=c;
+        } else if(office.equals("Vice President")){
+            votes[1]=c;
+        } else{
+            votes[2]=c;
+        }
 	}
+    
 }
