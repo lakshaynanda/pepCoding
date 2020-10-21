@@ -28,12 +28,19 @@ public class BallotBox {
 		ArrayList<Candidate> candidates = Ballot.getCandidates(office);
 		int[] votes = new int[candidates.size()];
 
-		for (int i=0; i<ballots.size(); i++) {
+		for (int i = 0; i < ballots.size(); i++) {
 			Candidate c = ballots.get(i).getVote(office);
 			if (c != null) {
-				votes[candidates.indexOf(c)]++;
+                int ind = -1;
+                for(int j = 0;j<candidates.size();j++){
+                    if(candidates.get(j) == c){
+                        ind = j;
+                    }
+                }
+				votes[ind]++;
 			}
 		}
+
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < votes.length; i++) {
 			if (votes[i] > max) {
@@ -41,5 +48,5 @@ public class BallotBox {
 			}
 		}
 		return candidates.get(max);
-	}
+    }
 }
