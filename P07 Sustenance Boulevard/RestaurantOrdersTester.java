@@ -102,6 +102,41 @@ public static boolean runAllTests() {
 * @param args input arguments if any.
 */
 public static void main(String[] args) {
-
-}
+    RestaurantOrders orders = new RestaurantOrders(5);
+    System.out.println(orders.readForward());
+    Order order1 = new Order(" Burger",1);
+    orders.placeOrder(order1);
+    System.out.println(orders.readForward());
+    Order order2 = new Order(" Sandwich",3);
+    orders.placeOrder(order2);
+    System.out.println(orders.readForward());
+    Order order3 = new Order(" Pizza",2);
+    orders.placeOrder(order3);
+    System.out.println(orders.readForward());
+    System.out.println(orders.readBackward());
+    orders.removeOrder(0);
+    System.out.println(orders.readForward());
+    Order order4 = new Order(" Falafel",4);
+    orders.placeOrder(order4);
+    Order order5 = new Order(" Noodles",5);
+    orders.placeOrder(order5);
+    System.out.println(orders.readForward());
+    Order order6 = new Order(" Pasta",3);
+    orders.placeOrder(order6);
+    System.out.println(orders.readForward());
+    orders.removeOrder(1);
+    System.out.println(orders.readForward());
+    orders.placeOrder(order6);
+    System.out.println(orders.readForward());
+    Order order7 = new Order(" Waffles",7);
+    orders.placeOrder(order7);
+    System.out.println(orders.readForward());
+    Order order8 = new Order(" Pancakes",8);
+    orders.placeOrder(order8);
+    System.out.println(orders.readForward());
+    orders.removeOrder(0);
+    System.out.println(orders.readForward());
+    orders.placeOrder(order8);
+    System.out.println(orders.readForward());
+    }
 }
