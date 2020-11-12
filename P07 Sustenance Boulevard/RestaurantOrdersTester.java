@@ -117,13 +117,7 @@ public static void main(String[] args) {
     orders.removeOrder(0);
     System.out.println(orders.readForward());
     Order order4 = new Order(" Falafel",4);
-    orders.placeOrder(order4);
-    Order order5 = new Order(" Noodles",5);
-    orders.placeOrder(order5);
-    System.out.println(orders.readForward());
-    Order order6 = new Order(" Pasta",3);
-    orders.placeOrder(order6);
-    System.out.println(orders.readForward());
+    
     orders.removeOrder(1);
     System.out.println(orders.readForward());
     orders.placeOrder(order6);
