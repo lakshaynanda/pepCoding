@@ -125,7 +125,8 @@ public class Inbox {
     
     String str = "";
     
-    str = str + "Unread (" + this.unreadMessageBox.size() + ")" + "\n" + "Read (" + this.readMessageBox.size() + ")";
+    str = str + "Unread (" + this.unreadMessageBox.size() + ")\n";
+    str = str + "Read (" + this.readMessageBox.size() + ")";
     
     return str;
    
@@ -145,11 +146,11 @@ public class Inbox {
     
     String str = "";
     Iterator<Message> iter = unreadMessageBox.iterator();
-    str = str + ("Unread(" + unreadMessageBox.size() + ")" + "\n");
+    str = str+ ("Unread(" + unreadMessageBox.size() + ")\n");
     
     while(iter.hasNext()) {
       Message temp = iter.next();
-      str = str + ("Unread(" + unreadMessageBox.size() + ")" + "\n") + temp.getID() + " " + temp.getSUBJECT() + "\n";
+      str = str + temp.getID() + " " + temp.getSUBJECT() + "\n";
     }
 
     return str;
